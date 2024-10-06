@@ -1,6 +1,8 @@
 export const searchResult = {
-  menu: <p></p>,
-  functions: "",
-  contact: "",
-  careers: "",
+  menu: "/menu",
+  functions: "/function",
+  contact: "/contact",
+  careers: "/career",
 };
+
+export const frequentQ = ["/menu", "/function", "/contact", "/careers"];

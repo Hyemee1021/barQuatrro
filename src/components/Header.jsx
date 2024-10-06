@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../redux/menuSlice";
@@ -17,18 +17,25 @@ const Header = () => {
   const searchState = useSelector((state) => state.search?.value);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [showSearch, setShowSearch] = useState("");
+
+  console.log(searchTerm);
+  console.log(searchResult);
 
   const filterSearch = (searchTerm) => {
-    // to lower case- searchterm and key of search result key
-    //check if key contains searchterm
-    // yes->show the result with link tag
-
     const result = searchTerm.toLowerCase();
-    const filteredResults = Object.keys(searchResult).filter(() =>
-      key.toLowerCase().includes(result)
+    const filteredResults = Object.keys(searchResult).filter(
+      (key) => key.toLowerCase().includes(result) && searchResult[key]
     );
-    return filteredResults;
+    setShowSearch(filteredResults);
   };
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      filterSearch(searchTerm);
+    }, 300);
+    return () => clearTimeout(timeId);
+  }, [searchTerm]);
 
   return (
     <div className="relative w-full grid  py-1 grid-cols-3 md:py-0 md:grid-cols-7 text-lg px-1  items-center shadow-sm ">
@@ -89,15 +96,31 @@ const Header = () => {
           placeholder="Frequent questions"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        {/* input for small screen */}
         <input
           onChange={(e) => setSearchTerm(e.target.value)}
-          className={` ${
+          className={`md:hidden ${
             searchState
               ? "absolute left-0 top-full w-full py-1 shadow-md"
               : "hidden"
-          }   bg-slate-50 focus:outline-none `}
+          }   bg-slate-50 focus:outline-none  `}
           placeholder="Frequent questions"
         />
+
+        {showSearch.length > 0 && (
+          <div className="absolute bg-white shadow-md rounded mt-2 w-full">
+            {showSearch.map(
+              (key) =>
+                searchResult[key] ? ( // Ensure the value is not undefined
+                  <Link key={key} to={searchResult[key]}>
+                    <div className="py-2 px-3 hover:bg-gray-200">
+                      {searchResult[key]}
+                    </div>
+                  </Link>
+                ) : null // If undefined, render nothing
+            )}
+          </div>
+        )}
       </div>
 
       {/* Sign Up Link */}
