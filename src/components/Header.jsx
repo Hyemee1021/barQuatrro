@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../redux/menuSlice";
+import { toggleSearch } from "../redux/searchSlice";
+
+//search Result
+import { searchResult } from "../assets/searchResult";
 // icons
 import { FiMenu } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
@@ -10,7 +14,21 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const menuState = useSelector((state) => state.menu?.value);
-  console.log(menuState);
+  const searchState = useSelector((state) => state.search?.value);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filterSearch = (searchTerm) => {
+    // to lower case- searchterm and key of search result key
+    //check if key contains searchterm
+    // yes->show the result with link tag
+
+    const result = searchTerm.toLowerCase();
+    const filteredResults = Object.keys(searchResult).filter(() =>
+      key.toLowerCase().includes(result)
+    );
+    return filteredResults;
+  };
 
   return (
     <div className="relative w-full grid  py-1 grid-cols-3 md:py-0 md:grid-cols-7 text-lg px-1  items-center shadow-sm ">
@@ -27,9 +45,10 @@ const Header = () => {
       {/* Submenu */}
       {menuState && (
         <div
-          className={`absolute left-0 top-full h-[90vh] w-full  md:w-[50%]  bg-slate-50 shadow-sm transition-all duration-300 ease-in-out ${
-            menuState ? "opacity-100" : "opacity-0 pointer-events-none"
-          } `}
+          className={`absolute left-0 top-full h-[90vh] w-full  md:w-[50%]  bg-slate-50 shadow-s
+            m transition-all duration-300 ease-in-out ${
+              menuState ? "opacity-100" : "opacity-0 pointer-events-none"
+            } `}
         >
           <ul className=" w-[100%] p-4">
             <li className=" hover:w-full py-1 cursor-pointer hover:bg-slate-100">
@@ -63,10 +82,20 @@ const Header = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="flex justify-end bg-white col-span-1 md:bg-slate-50 md:py-1 w-[90%] md:items-center md:justify-start md:col-span-3 pl-2 rounded-md">
-        <IoMdSearch size={20} />
+      <div className=" flex justify-end bg-white col-span-1 md:bg-slate-50 md:py-1 w-[90%] md:items-center md:justify-start md:col-span-3 pl-2 rounded-md">
+        <IoMdSearch size={20} onClick={() => dispatch(toggleSearch())} />
         <input
-          className="hidden  md:py-1 md:block pl-1  bg-slate-50"
+          className={` hidden  md:py-1 md:block pl-1  bg-slate-50 focus:outline-none `}
+          placeholder="Frequent questions"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <input
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={` ${
+            searchState
+              ? "absolute left-0 top-full w-full py-1 shadow-md"
+              : "hidden"
+          }   bg-slate-50 focus:outline-none `}
           placeholder="Frequent questions"
         />
       </div>
