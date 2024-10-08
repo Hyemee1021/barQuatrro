@@ -5,4 +5,4 @@ export const searchResult = {
   careers: "/career",
 };
 
-export const frequentQ = ["/menu", "/function", "/contact", "/careers"];
+export const frequentQ = ["Menu", "Function", "Contact", "Careers"];
