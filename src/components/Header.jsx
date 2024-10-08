@@ -7,6 +7,7 @@ import { toggleSearch } from "../redux/searchSlice";
 //search Result
 import { searchResult } from "../assets/searchResult";
 // icons
+import { MdOutlineClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import logo from "../assets/logo.jpg";
@@ -15,14 +16,17 @@ const Header = () => {
   const dispatch = useDispatch();
   const menuState = useSelector((state) => state.menu?.value);
   const searchState = useSelector((state) => state.search?.value);
-
+  console.log(searchState);
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState("");
 
-  console.log(searchTerm);
-  console.log(searchResult);
+  console.log(showSearch);
 
   const filterSearch = (searchTerm) => {
+    if (!searchTerm) {
+      setShowSearch([]); // Reset to an empty array if there's no search term
+      return;
+    }
     const result = searchTerm.toLowerCase();
     const filteredResults = Object.keys(searchResult).filter(
       (key) => key.toLowerCase().includes(result) && searchResult[key]
@@ -52,27 +56,32 @@ const Header = () => {
       {/* Submenu */}
       {menuState && (
         <div
-          className={`absolute left-0 top-full h-[90vh] w-full  md:w-[50%]  bg-slate-50 shadow-s
+          className={`absolute z-50 left-0 top-full h-[90vh] w-full  md:w-[50%]  bg-slate-50 shadow-s
             m transition-all duration-300 ease-in-out ${
               menuState ? "opacity-100" : "opacity-0 pointer-events-none"
             } `}
         >
           <ul className=" w-[100%] p-4">
-            <li className=" hover:w-full py-1 cursor-pointer hover:bg-slate-100">
-              Menu1
-            </li>
-            <li className="py-1  hover:w-full cursor-pointer hover:bg-slate-100">
-              Menu2
-            </li>
-            <li className="py-1  hover:w-full cursor-pointer hover:bg-slate-100">
-              What's one
-            </li>
-            <li className="py-1  hover:w-full cursor-pointer hover:bg-slate-100">
-              Contact
-            </li>
-            <li className="py-1   hover:w-full cursor-pointer hover:bg-slate-100">
-              Careers
-            </li>
+            <Link to="/menu">
+              <li className=" hover:w-full py-1 cursor-pointer hover:bg-slate-100">
+                Menu1
+              </li>
+            </Link>
+            <Link to="/functions">
+              <li className="py-1  hover:w-full cursor-pointer hover:bg-slate-100">
+                What's one
+              </li>
+            </Link>
+            <Link to="/contact">
+              <li className="py-1  hover:w-full cursor-pointer hover:bg-slate-100">
+                Contact
+              </li>
+            </Link>
+            <Link to="/careers">
+              <li className="py-1   hover:w-full cursor-pointer hover:bg-slate-100">
+                Careers
+              </li>
+            </Link>
           </ul>
         </div>
       )}
@@ -89,10 +98,10 @@ const Header = () => {
       </div>
 
       {/* Search Bar */}
-      <div className=" flex justify-end bg-white col-span-1 md:bg-slate-50 md:py-1 w-[90%] md:items-center md:justify-start md:col-span-3 pl-2 rounded-md">
+      <div className=" flex justify-end bg-white col-span-1 md:bg-slate-100 md:py-1 w-[90%] md:items-center md:justify-start md:col-span-3 pl-2 rounded-md">
         <IoMdSearch size={20} onClick={() => dispatch(toggleSearch())} />
         <input
-          className={` hidden  md:py-1 md:block pl-1  bg-slate-50 focus:outline-none `}
+          className={` hidden   md:block pl-1  bg-slate-100 focus:outline-none `}
           placeholder="Frequent questions"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -101,24 +110,42 @@ const Header = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className={`md:hidden ${
             searchState
-              ? "absolute left-0 top-full w-full py-1 shadow-md"
+              ? "absolute z-50 left-0 top-full w-full py-1 shadow-md pl-2"
               : "hidden"
           }   bg-slate-50 focus:outline-none  `}
           placeholder="Frequent questions"
         />
 
         {showSearch.length > 0 && (
-          <div className="absolute bg-white shadow-md rounded mt-2 w-full">
-            {showSearch.map(
-              (key) =>
-                searchResult[key] ? ( // Ensure the value is not undefined
-                  <Link key={key} to={searchResult[key]}>
-                    <div className="py-2 px-3 hover:bg-gray-200">
-                      {searchResult[key]}
-                    </div>
+          <div className="absolute pt-1 z-50 left-0 top-20 bg-white shadow-md rounded  w-full h-[60vh]  sm:top-12 ">
+            <div className="mx-auto flex flex-col justify-between w-2/3  ">
+              <div className="colums-2 p-3 hover:text-red-800 hover:cursor-pointer">
+                <MdOutlineClose size={25} />
+              </div>
+              {/* <h1 className="text-2xl text-gray-600 font-semibold">
+                Search Result
+              </h1> */}
+              <div className="flex flex-col items-center justify-center">
+                {showSearch.map(
+                  (key) =>
+                    searchResult[key] ? ( // Ensure the value is not undefined
+                      <Link key={key} to={searchResult[key]}>
+                        <div className=" text-gray-600 text-3xl py-2 px-3 hover:text-red-800">
+                          {key}
+                        </div>
+                      </Link>
+                    ) : null // If undefined, render nothing
+                )}
+              </div>
+              <div className="text-center mt-8">
+                <h2 className=" text-gray-500">Popualr Links</h2>
+                <ul>
+                  <Link to="/functions">
+                    <li>What's on</li>
                   </Link>
-                ) : null // If undefined, render nothing
-            )}
+                </ul>
+              </div>
+            </div>
           </div>
         )}
       </div>
