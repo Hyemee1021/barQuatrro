@@ -18,7 +18,7 @@ const Header = () => {
   const searchState = useSelector((state) => state.search?.value);
   console.log(searchState);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showSearch, setShowSearch] = useState("");
+  const [showSearch, setShowSearch] = useState([]);
 
   console.log(showSearch);
 
@@ -112,7 +112,7 @@ const Header = () => {
             searchState
               ? "absolute z-50 left-0 top-full w-full py-1 shadow-md pl-2"
               : "hidden"
-          }   bg-slate-50 focus:outline-none  `}
+          }   bg-slate-100 focus:outline-none  `}
           placeholder="Frequent questions"
         />
 
@@ -120,11 +120,9 @@ const Header = () => {
           <div className="absolute pt-1 z-50 left-0 top-20 bg-white shadow-md rounded  w-full h-[60vh]  sm:top-12 ">
             <div className="mx-auto flex flex-col justify-between w-2/3  ">
               <div className="colums-2 p-3 hover:text-red-800 hover:cursor-pointer">
-                <MdOutlineClose size={25} />
+                <MdOutlineClose size={25} onClick={() => setShowSearch([])} />
               </div>
-              {/* <h1 className="text-2xl text-gray-600 font-semibold">
-                Search Result
-              </h1> */}
+              <h2 className="text-center  text-gray-500">Search Results</h2>
               <div className="flex flex-col items-center justify-center">
                 {showSearch.map(
                   (key) =>
@@ -141,7 +139,9 @@ const Header = () => {
                 <h2 className=" text-gray-500">Popualr Links</h2>
                 <ul>
                   <Link to="/functions">
-                    <li>What's on</li>
+                    <li className="hover:text-red-800">What's on</li>
+                    <li className="hover:text-red-800">Contacts</li>
+                    <li className="hover:text-red-800">Careers</li>
                   </Link>
                 </ul>
               </div>
