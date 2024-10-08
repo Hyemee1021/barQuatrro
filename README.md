@@ -12,6 +12,7 @@ To contribute to this project, please ensure you have the following libraries in
 Vite: A build tool that provides a faster and leaner development experience for modern web projects.
 
 Tailwind CSS: A utility-first CSS framework for rapidly building custom user interfaces.
+
 Getting Started
 
 To get started with the project, follow these steps:
