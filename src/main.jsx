@@ -10,6 +10,8 @@ import Contact from "./pages/Contact";
 // redux
 import { Provider } from "react-redux";
 import { store } from "./store";
+import Functions from "./pages/Functions";
+import Careers from "./pages/Careers";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,12 +22,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "signup",
+        path: "/signup",
         element: <Signup />,
       },
       {
-        path: "contact",
+        path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/functions",
+        element: <Functions />,
+      },
+      {
+        path: "/careers",
+        element: <Careers />,
       },
     ],
   },
