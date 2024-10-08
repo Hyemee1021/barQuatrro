@@ -1,12 +1,12 @@
 barQuatrro
 
-Overview
+Overview - 
 barQuatrro is a React application built with Vite. This project aims to provide a fast and efficient development experience.
 
-Main Color
+Main Color -
 The primary color for this project is #6C3030.
 
-Libraries Needed
+Libraries Needed -
 To contribute to this project, please ensure you have the following libraries installed:
 
 Vite: A build tool that provides a faster and leaner development experience for modern web projects.
