@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../redux/menuSlice";
@@ -7,6 +7,8 @@ import { toggleSearch } from "../redux/searchSlice";
 //search Result
 import { searchResult } from "../assets/searchResult";
 import { frequentQ } from "../assets/searchResult";
+// lazy loading
+const SubMenu = lazy(() => import("../components/Submenu"));
 // icons
 import { MdOutlineClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
@@ -17,6 +19,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const menuState = useSelector((state) => state.menu?.value);
+  console.log(menuState);
   const searchState = useSelector((state) => state.search?.value);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchNotFound, setSearchNotFound] = useState(false);
@@ -63,30 +66,9 @@ const Header = () => {
 
       {/* Submenu */}
       {menuState && (
-        <div className="absolute z-50 left-0 top-full h-[90vh] w-full md:w-[50%] bg-slate-50 shadow-s transition-all duration-300 ease-in-out opacity-100">
-          <ul className="w-[100%] p-4">
-            <Link to="/menu">
-              <li className="hover:w-full py-1 cursor-pointer hover:bg-slate-100">
-                Menu1
-              </li>
-            </Link>
-            <Link to="/functions">
-              <li className="py-1 hover:w-full cursor-pointer hover:bg-slate-100">
-                What's one
-              </li>
-            </Link>
-            <Link to="/contact">
-              <li className="py-1 hover:w-full cursor-pointer hover:bg-slate-100">
-                Contact
-              </li>
-            </Link>
-            <Link to="/careers">
-              <li className="py-1 hover:w-full cursor-pointer hover:bg-slate-100">
-                Careers
-              </li>
-            </Link>
-          </ul>
-        </div>
+        <Suspense fallback={"loading.."}>
+          <SubMenu />
+        </Suspense>
       )}
 
       {/* Logo */}
