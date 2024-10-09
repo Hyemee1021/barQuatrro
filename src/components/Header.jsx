@@ -7,8 +7,11 @@ import { toggleSearch } from "../redux/searchSlice";
 //search Result
 import { searchResult } from "../assets/searchResult";
 import { frequentQ } from "../assets/searchResult";
+
 // lazy loading
 const SubMenu = lazy(() => import("../components/Submenu"));
+const SearchResults = lazy(() => import("../components/SearchResults"));
+const SearchNotFound = lazy(() => import("../components/SearchNotFound"));
 // icons
 import { MdOutlineClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
@@ -19,7 +22,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const menuState = useSelector((state) => state.menu?.value);
-  console.log(menuState);
+
   const searchState = useSelector((state) => state.search?.value);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchNotFound, setSearchNotFound] = useState(false);
@@ -104,42 +107,16 @@ const Header = () => {
 
         {/* Display search results or "not found" */}
         {showSearch.length > 0 ? (
-          <div className="absolute z-50 left-0 top-20 w-full h-[60vh] bg-white shadow-md rounded sm:top-12">
-            <div className="mx-auto flex flex-col w-2/3">
-              <MdOutlineClose
-                size={25}
-                onClick={() => setShowSearch([])}
-                className="cursor-pointer"
-              />
-              <h2 className="text-center text-gray-500">Search Results</h2>
-              <div className="flex flex-col items-center">
-                {showSearch.map(
-                  (key) =>
-                    searchResult[key] && (
-                      <Link key={key} to={searchResult[key]}>
-                        <div className="text-gray-600 text-3xl py-2 px-3 hover:text-red-800">
-                          {key}
-                        </div>
-                      </Link>
-                    )
-                )}
-              </div>
-            </div>
-          </div>
+          <SearchResults
+            setShowSearch={setShowSearch}
+            showSearch={showSearch}
+            searchResult={searchResult}
+          />
         ) : searchNotFound ? (
-          <div className="absolute z-50 left-0 top-20 w-full h-[60vh] bg-white shadow-md rounded sm:top-12">
-            <div className="text-center mt-8">
-              <p>Item not found...</p>
-              <h2 className="text-gray-500">Popular Links</h2>
-              <ul>
-                {frequentQ.map((ele) => (
-                  <Link key={ele} to={`/${ele.toLowerCase()}`}>
-                    <li className="hover:text-red-800">{ele}</li>
-                  </Link>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <SearchNotFound
+            frequentQ={frequentQ}
+            setSearchNotFound={setSearchNotFound}
+          />
         ) : null}
       </div>
 
