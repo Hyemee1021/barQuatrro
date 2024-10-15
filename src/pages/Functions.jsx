@@ -8,7 +8,6 @@ import { IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
 const Functions = () => {
   const [isvisible, setIsVisible] = useState(false);
-  const [scrollDown, setScrollDown] = useState(false);
 
   const handleScroll = () => {
     if (window.scrollY > 300) {
@@ -30,7 +29,7 @@ const Functions = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isvisible]);
+  }, []);
 
   return (
     <main className="bg-slate-100 pb-32">
