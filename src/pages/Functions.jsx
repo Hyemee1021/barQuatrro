@@ -63,7 +63,7 @@ const Functions = () => {
               <p className="">Home</p>
             </div>
           </Link>
-          <div className="flex flex-col my-16 sm:flex-row">
+          <div className="flex flex-col my-16 sm:flex-row sm:items-center gap-3 justify-center">
             <h1 className="text-4xl title_2 ">Coming Up at </h1>
             <h1 className="text-4xl title_2 mt-2  ">Bar Quattro</h1>
           </div>

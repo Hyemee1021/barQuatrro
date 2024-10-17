@@ -1,0 +1,17 @@
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.image.active {
+  opacity: 1;
+  transform: translateX(0); /* Slide into view */
+}
+.image.exit {
+  transform: translateX(-100%); /* Move out to the left */
+  opacity: 0;
+}
