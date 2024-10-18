@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 // icons
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { BackToTop } from "../components/BackToTop";
 const Careers = () => {
   const settings = {
     // dots: true, // Show pagination dots
@@ -22,37 +23,9 @@ const Careers = () => {
     autoplaySpeed: 2000, // Time between slides
   };
 
-  const [isvisible, setIsVisible] = useState(false);
-
-  const handleScroll = () => {
-    if (window.scrollY > 100) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  const backToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <main className="bg-slate-100 pb-32 h-full">
-      {isvisible && (
-        <div
-          className="fixed top-0 z-10 w-[100%] bg-white shadow-md  p-3 flex items-center justify-center gap-2 cursor-pointer"
-          onClick={backToTop}
-        >
-          <IoIosArrowUp />
-          Back to the top
-        </div>
-      )}
+      <BackToTop />
       <div className=" h-[30vh] md:h-[70vh]  ">
         <Slider {...settings}>
           <div>

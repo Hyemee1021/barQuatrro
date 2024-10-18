@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BackToTop } from "../components/BackToTop";
 // images
 import functionP from "../assets/images.jpeg";
 import monday from "../assets/monday.jpeg";
@@ -8,44 +9,10 @@ import { IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Functions = () => {
-  const [isvisible, setIsVisible] = useState(false);
-
-  const handleScroll = () => {
-    if (window.scrollY > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  const backToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    // Attach the listener when the component mounts
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <main className="bg-slate-100 pb-32">
       {/* back to  top */}
-
-      {isvisible && (
-        <div
-          className="fixed top-0 z-10 w-[100%] bg-white shadow-md  p-3 flex items-center justify-center gap-2 cursor-pointer"
-          onClick={backToTop}
-        >
-          <IoIosArrowUp />
-          Back to the top
-        </div>
-      )}
-
+      <BackToTop />
       <div className="relative">
         <img
           className="w-full object-cover h-[30vh] md:h-[70vh]"
