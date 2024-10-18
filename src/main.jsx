@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import Functions from "./pages/Functions";
 import Careers from "./pages/Careers";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         element: <Careers />,
       },
       {
-        path: "/menu",
+        path: "/careers",
         element: <Careers />,
       },
     ],
