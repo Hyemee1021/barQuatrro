@@ -14,12 +14,12 @@ const Submenu = () => {
         <ul className="w-[100%] p-4">
           <Link to="/menu">
             <li className="hover:w-full py-1 cursor-pointer hover:bg-slate-100">
-              Menu1
+              Menu
             </li>
           </Link>
           <Link to="/functions">
             <li className="py-1 hover:w-full cursor-pointer hover:bg-slate-100">
-              What's one
+              What's on
             </li>
           </Link>
           <Link to="/contact">

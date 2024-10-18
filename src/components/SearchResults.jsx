@@ -27,7 +27,6 @@ const SearchResults = ({ setShowSearch, showSearch, searchResult }) => {
           </div>
         </div>
       </div>
-      )
     </>
   );
 };
