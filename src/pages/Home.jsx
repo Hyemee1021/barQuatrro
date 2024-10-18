@@ -1,5 +1,6 @@
 import React from "react";
 import heroPhoto from "../assets/bar1.webp";
+import Functions from "./Functions";
 const Home = () => {
   return (
     <main>

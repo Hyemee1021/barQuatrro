@@ -6,6 +6,7 @@ import monday from "../assets/monday.jpeg";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
+
 const Functions = () => {
   const [isvisible, setIsVisible] = useState(false);
 
@@ -34,6 +35,7 @@ const Functions = () => {
   return (
     <main className="bg-slate-100 pb-32">
       {/* back to  top */}
+
       {isvisible && (
         <div
           className="fixed top-0 z-10 w-[100%] bg-white shadow-md  p-3 flex items-center justify-center gap-2 cursor-pointer"
