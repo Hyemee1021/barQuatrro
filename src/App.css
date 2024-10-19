@@ -1,0 +1,17 @@
+.custom-select {
+    -webkit-appearance: none; /* Safari and Chrome */
+    -moz-appearance: none;    /* Firefox */
+    appearance: none;         /* Standard */
+    background-color: white;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='none'%20stroke='black'%20stroke-width='.5'%20d='M0%201L2%204L4%201'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 5vmin center;
+    background-size: 1vmin;
+    padding-left: 5vmin;
+    border-top:none;
+    border-bottom:none;
+    border-radius: 0vmin;
+  }
+
+
+
