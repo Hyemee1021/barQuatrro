@@ -4,10 +4,17 @@
 
 body {
   font-family: "Afacad Flux", sans-serif;
+  min-height: 100vh; /* Added when implementing the footer to ensure body takes up at least full viewport height */
 }
 body,
 html {
   overflow-x: hidden; /* Prevent horizontal scroll */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%; /* Added when implemening the footer */
+  display: flex; /* Added when implemening the footer */
+  flex-direction: column; /* Added when implemening the footer */  
 }
 .title {
   font-family: "IBM Plex Serif", serif;
