@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <div className="w-full">
-      <div className="w-full  mx-auto">
+      <div className="w-full mx-auto">
         <Header />
         <Outlet />
         <Footer />

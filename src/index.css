@@ -4,7 +4,7 @@
 
 body {
   font-family: "Afacad Flux", sans-serif;
-  min-height: 100vh; /* Added when implementing the footer to ensure body takes up at least full viewport height */
+  max-height: 100%; /* Added when implementing the footer to ensure body takes up at least full viewport height */
 }
 body,
 html {
