@@ -1,6 +1,7 @@
-// Todo predevelopment
+// Todo predeployment
 // Formspress account for Bar Quattro
 // Then update form action
+// Need to fix responsiveness of tile buttons at smaller break points
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -19,7 +20,6 @@ const LostPropertyForm = ({ handleButtonClick }) => (
   </form>
 );
 
-// Add other forms similarly
 const EnquiryForm = ({ handleButtonClick }) => (
    <form action="https://formspree.io/f/xjkvvqag" method="POST" className="mt-6 border border-gray-200 shadow-lg py-6 pr-6 pl-6" >
     <h3 className="text-xl font-semibold mb-4">How may we help?</h3>
@@ -42,13 +42,13 @@ const FeedbackForm = ({ handleButtonClick }) => (
   </form>
 );
 
-const ReservationForm = ({ handleButtonClick }) => (
+const FunctionForm = ({ handleButtonClick }) => (
   <form action="https://formspree.io/f/xjkvvqag" method="POST" className="mt-6 border border-gray-200 shadow-lg py-6 pr-6 pl-6" >
-   <h3 className="text-xl font-semibold mb-4">Request a Reservation</h3>
+   <h3 className="text-xl font-semibold mb-4">Function Enquiry</h3>
    <input type="text" name="name" className="w-full mb-4 p-2 border" placeholder="Your Name" />
    <input type="email" name="email" className="w-full mb-4 p-2 border" placeholder="Your Email" />
    <textarea name="message" className="w-full mb-4 p-2 border" placeholder="Day and time? Number of quests?"></textarea>
-   <button type="submit" className="bg-black text-white px-6 py-2">Submit Feedback</button>
+   <button type="submit" className="bg-black text-white px-6 py-2">Submit Enquiry</button>
    <button type="button" onClick={ ()=> handleButtonClick("")} className="bg-black text-white px-6 py-2 ml-6">Cancel</button>
  </form>
 );
@@ -91,7 +91,7 @@ const Contact = () => {
                 Please select
               </option>
               <option value="enquiry">MAKE AN ENQUIRY</option>
-              <option value="reservation">MAKE A RESERVATION</option>
+              <option value="reservation">FUNCTIONS</option>
               <option value="lost-property">LOST PROPERTY</option>
               <option value="feedback">PROVIDE FEEDBACK</option>
             </select>
@@ -131,10 +131,10 @@ const Contact = () => {
 
             {/* Tile 2 */}
             <Tile 
-              title="Make a Reservation" 
+              title="Function Enquiry" 
               openingHours="Monday-Sunday 3pm-10pm"
-              buttonText="Email Reservations Team"
-              onClick={() => handleButtonClick('reservation')}
+              buttonText="Email Team"
+              onClick={() => handleButtonClick('function')}
             />
 
             {/* Tile 3 */}
@@ -148,7 +148,7 @@ const Contact = () => {
             {/* Tile 4 */}
             <Tile 
               title="We Love Feedback" 
-              description="Please contact us here, we'd love to hear about your experience."
+              description="Please contact us, we'd love to hear about your experience."
               buttonText="Provide Feedback"
               onClick={() => handleButtonClick('feedback')}
             />
@@ -160,7 +160,7 @@ const Contact = () => {
             {selectedOption === 'lost-property' && <LostPropertyForm handleButtonClick={handleButtonClick}/>}
             {selectedOption === 'enquiry' && <EnquiryForm handleButtonClick={handleButtonClick}/>}
             {selectedOption === 'feedback' && <FeedbackForm handleButtonClick={handleButtonClick}/>}
-            {selectedOption === 'reservation' && <ReservationForm handleButtonClick={handleButtonClick} />}
+            {selectedOption === 'function' && <FunctionForm handleButtonClick={handleButtonClick} />}
           </div>
         )}
       </div>

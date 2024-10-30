@@ -3,7 +3,7 @@ import logo from '../assets/logo.jpg';
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col h-[50vh] border-t border-t-solid border-t-grey mt-20">
+    <footer className="flex flex-col h-[58vh] border-t border-t-solid border-t-grey mt-20 flex-grow-2">
       {/* Upper Section */}
       <div className="bg-white text-black flex-grow p-6 overflow-hidden">
         <div className="flex justify-between items-center h-full">
