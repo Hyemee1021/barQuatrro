@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BackToTop } from "../components/BackToTop";
 // images
-import functionP from "../assets/images.jpeg";
+import functionP from "../assets/bar1.jpg";
 import monday from "../assets/monday.jpeg";
 // icons
 import { IoIosArrowBack } from "react-icons/io";

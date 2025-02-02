@@ -8,13 +8,13 @@ const Submenu = () => {
   return (
     <>
       <div
-        className="absolute z-50 left-0 top-full h-[90vh] w-full md:w-[50%] bg-slate-50 shadow-s transition-all duration-300 ease-in-out opacity-100 "
+        className="absolute z-50 left-0 top-full h-[90vh] w-full md:w-[50%]  shadow-sm bg-white transition-all duration-300 ease-in-out opacity-100 "
         onClick={dispatch(toggle)}
       >
         <ul className="w-[100%] p-4">
-          <Link to="/menu">
+          <Link to="/drinknfood">
             <li className="hover:w-full py-1 cursor-pointer hover:bg-slate-100">
-              Menu
+              Drink &Food
             </li>
           </Link>
           <Link to="/functions">

@@ -22,3 +22,7 @@ html {
 .title_2 {
   font-family: "IBM Plex Serif", serif;
 }
+/* Inside your global CSS file (e.g., styles.css or tailwind.css) */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}

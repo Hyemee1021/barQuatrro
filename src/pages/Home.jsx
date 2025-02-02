@@ -1,7 +1,9 @@
 import React from "react";
-import heroPhoto from "../assets/bar1.webp";
+import heroPhoto from "../assets/bar1.jpg";
 import Functions from "./Functions";
+import useDocumentTitle from "../components/useDocumentTitle";
 const Home = () => {
+  useDocumentTitle("Bar Quattro");
   return (
     <main>
       <div className="relative">

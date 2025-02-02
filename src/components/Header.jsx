@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../redux/menuSlice";
@@ -24,6 +24,10 @@ const Header = () => {
   const menuState = useSelector((state) => state.menu?.value);
 
   const searchState = useSelector((state) => state.search?.value);
+
+  // useRef
+  const subMenuRef = useRef(null);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchNotFound, setSearchNotFound] = useState(false);
   const [showSearch, setShowSearch] = useState([]);
@@ -48,6 +52,11 @@ const Header = () => {
     }
   };
 
+  const handleClick = (e) => {
+    if (subMenuRef.current && !subMenuRef.current.contains(event.target)) {
+      dispatch(toggle());
+    }
+  };
   useEffect(() => {
     const timeId = setTimeout(() => {
       filterSearch(searchTerm);
@@ -55,22 +64,28 @@ const Header = () => {
     return () => clearTimeout(timeId);
   }, [searchTerm]);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
   return (
     <div className="relative w-full grid py-1 grid-cols-3 md:py-0 md:grid-cols-7 text-lg px-1 items-center shadow-sm">
       {/* Main Menu Trigger */}
-      <div className="cursor-pointer pl-5 flex gap-3 items-center col-span-1">
-        <FiMenu
-          size={22}
-          className="font-semibold"
-          onClick={() => dispatch(toggle())}
-        />
+      <div
+        className="cursor-pointer pr-9 flex gap-3 items-center justify-center col-span-1 py-1 hover:bg-gray-50 "
+        onClick={() => dispatch(toggle())}
+      >
+        <FiMenu size={22} className="font-semibold " />
         menu
       </div>
 
       {/* Submenu */}
       {menuState && (
         <Suspense fallback={"loading.."}>
-          <SubMenu />
+          <SubMenu ref={subMenuRef} />
         </Suspense>
       )}
 

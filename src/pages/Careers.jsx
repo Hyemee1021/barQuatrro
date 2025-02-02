@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
-import photo1 from "../assets/bar2.jpg";
-import photo2 from "../assets/bar1.webp";
-import photo3 from "../assets/images.jpeg";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,29 +23,7 @@ const Careers = () => {
     <main className="bg-slate-100 pb-32 h-full">
       <BackToTop />
       <div className=" h-[30vh] md:h-[70vh]  ">
-        <Slider {...settings}>
-          <div>
-            <img
-              className=" w-full object-cover h-[30vh] md:h-[70vh]"
-              src={photo1}
-              alt="Slide 1"
-            />
-          </div>
-          <div>
-            <img
-              className="w-full  object-cover h-[30vh] md:h-[70vh]"
-              src={photo2}
-              alt="Slide 2"
-            />
-          </div>
-          <div>
-            <img
-              className="w-full  object-cover h-[30vh] md:h-[70vh]"
-              src={photo3}
-              alt="Slide 3"
-            />
-          </div>
-        </Slider>
+        <div> Photo comes here</div>
         <p className="absolute font-semibold top-[22%] text-4xl  sm:top-[22%] md:top-[48%] text-white title left-[50%]  transform -translate-x-1/2 -translate-y-1/2 ">
           Careers
         </p>
